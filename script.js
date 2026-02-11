@@ -8,6 +8,9 @@ const phrases = [
   "С тобой даже обычный день становится особенным."
 ];
 
+// Финальный текст (поменяй как хочешь)
+const inviteText = "Предлагаю тебе встретиться в субботу в кино, а после поужинать 🙂";
+
 // shuffle-bag: рандомно без повторов
 let bag = [];
 function refillBag() {
@@ -25,17 +28,29 @@ const counter = document.getElementById("counter");
 
 let spinning = false;
 let angle = 0;
+let finished = false;
 
 function updateCounter() {
-  counter.textContent = bag.length ? `Осталось фраз: ${bag.length}` : "Фразы закончились 🙂";
+  counter.textContent = bag.length
+    ? `Осталось фраз: ${bag.length}`
+    : (finished ? "Готово 🙂" : "Фразы закончились 🙂");
+}
+
+function lockUI() {
+  finished = true;
+  spinBtn.disabled = true;
+  spinBtn.textContent = "Готово";
+  wheel.style.cursor = "default";
+  updateCounter();
 }
 
 function spin() {
-  if (spinning) return;
+  if (spinning || finished) return;
 
+  // если вдруг уже пусто — сразу показываем приглашение
   if (bag.length === 0) {
-    result.textContent = "Фразы закончились 🙂";
-    updateCounter();
+    alert(inviteText);
+    lockUI();
     return;
   }
 
@@ -53,6 +68,14 @@ function spin() {
   setTimeout(() => {
     result.textContent = text;
     spinning = false;
+
+    // ✅ Если это была последняя фраза — показываем приглашение
+    if (bag.length === 0 && !finished) {
+      setTimeout(() => {
+        alert(inviteText);
+        lockUI();
+      }, 450);
+    }
   }, 1800);
 }
 
