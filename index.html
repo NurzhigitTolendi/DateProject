@@ -9,34 +9,17 @@
 <body>
   <main class="card">
     <h1>Колесо комплиментов 🎡</h1>
-    <p class="sub">Нажми «Начать», потом кликай по колесу — оно выдаст комплимент.</p>
 
-    <div id="startWrap">
-      <button id="startBtn" class="btn">Начать</button>
+    <div class="wheelWrap">
+      <div class="pointer"></div>
+      <div id="wheel" class="wheel" title="Кликни или нажми Крутить"></div>
     </div>
 
-    <section id="game" class="game hidden">
-      <div class="wheelWrap">
-        <div class="pointer" aria-hidden="true"></div>
-        <button id="wheel" class="wheel" aria-label="Крутить колесо"></button>
-      </div>
+    <button id="spinBtn" class="btn">Крутить</button>
 
-      <button id="spinBtn" class="btn">Крутить</button>
-
-      <p id="result" class="result">🙂</p>
-      <p id="counter" class="counter"></p>
-    </section>
+    <p id="result" class="result">Нажми «Крутить» 🙂</p>
+    <p id="counter" class="counter"></p>
   </main>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modalCard">
-      <h2>И всё 🙂</h2>
-      <p id="inviteText" class="invite"></p>
-      <div class="modalActions">
-        <button id="closeModalBtn" class="btn secondary">Закрыть</button>
-      </div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
