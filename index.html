@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Колесо комплиментов</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>Колесо комплиментов 🎡</h1>
+    <p class="sub">Нажми «Начать», потом кликай по колесу — оно выдаст комплимент.</p>
+
+    <div id="startWrap">
+      <button id="startBtn" class="btn">Начать</button>
+    </div>
+
+    <section id="game" class="game hidden">
+      <div class="wheelWrap">
+        <div class="pointer" aria-hidden="true"></div>
+        <button id="wheel" class="wheel" aria-label="Крутить колесо"></button>
+      </div>
+
+      <button id="spinBtn" class="btn">Крутить</button>
+
+      <p id="result" class="result">🙂</p>
+      <p id="counter" class="counter"></p>
+    </section>
+  </main>
+
+  <!-- Модалка -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modalCard">
+      <h2>И всё 🙂</h2>
+      <p id="inviteText" class="invite">
+        Предлагаю тебе встретиться в субботу в кино, а после поужинать.
+      </p>
+      <div class="modalActions">
+        <button id="copyInviteBtn" class="btn">Скопировать</button>
+        <button id="closeModalBtn" class="btn secondary">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
