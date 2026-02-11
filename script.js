@@ -1,4 +1,3 @@
-
 const compliments = [
   "Ты очень искренняя — это редкость.",
   "С тобой легко и спокойно.",
@@ -8,7 +7,6 @@ const compliments = [
   "С тобой даже обычный день становится особенным."
 ];
 
-// 2) Текст приглашения (можешь поменять)
 const invite = "Предлагаю тебе встретиться в субботу в кино, а после поужинать.";
 
 const startBtn = document.getElementById("startBtn");
@@ -23,16 +21,13 @@ const counter = document.getElementById("counter");
 const modal = document.getElementById("modal");
 const inviteText = document.getElementById("inviteText");
 const closeModalBtn = document.getElementById("closeModalBtn");
-const copyInviteBtn = document.getElementById("copyInviteBtn");
 
-// мешок фраз без повторов (shuffle-bag)
 let bag = [];
 let spinning = false;
 let angle = 0;
 
 function refillBag() {
   bag = [...compliments];
-  // Fisher–Yates shuffle
   for (let i = bag.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [bag[i], bag[j]] = [bag[j], bag[i]];
@@ -40,9 +35,7 @@ function refillBag() {
 }
 
 function updateCounter() {
-  counter.textContent = bag.length > 0
-    ? `Осталось комплиментов: ${bag.length}`
-    : "";
+  counter.textContent = bag.length > 0 ? `Осталось: ${bag.length}` : "";
 }
 
 function openModal() {
@@ -52,16 +45,6 @@ function openModal() {
 
 function closeModal() {
   modal.classList.add("hidden");
-}
-
-async function copyInvite() {
-  try {
-    await navigator.clipboard.writeText(inviteText.textContent);
-    copyInviteBtn.textContent = "Скопировано!";
-    setTimeout(() => (copyInviteBtn.textContent = "Скопировать"), 900);
-  } catch {
-    alert("Не получилось скопировать. Выдели текст и скопируй вручную.");
-  }
 }
 
 function spin() {
@@ -74,7 +57,6 @@ function spin() {
 
   spinning = true;
 
-  
   const text = bag.pop();
   updateCounter();
 
@@ -100,7 +82,7 @@ startBtn.addEventListener("click", () => {
   updateCounter();
   startWrap.classList.add("hidden");
   game.classList.remove("hidden");
-  result.textContent = "Крути колесо 🙂";
+  result.textContent = "Кликай по колесу 🙂";
 });
 
 wheel.addEventListener("click", spin);
@@ -110,4 +92,3 @@ closeModalBtn.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
-copyInviteBtn.addEventListener("click", copyInvite);

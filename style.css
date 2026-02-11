@@ -43,9 +43,11 @@ h1{ margin:0 0 10px; }
   border-bottom: 24px solid #111;
   filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
   z-index: 2;
+  pointer-events: none;
 }
 
 .wheel{
+  position: relative;
   width:100%;
   height:100%;
   border:none;
@@ -68,13 +70,15 @@ h1{ margin:0 0 10px; }
 .wheel::after{
   content:"";
   position:absolute;
-  inset: 50%;
+  top:50%;
+  left:50%;
   width: 70px;
   height: 70px;
   transform: translate(-50%,-50%);
   border-radius:50%;
   background:#fff;
   box-shadow: inset 0 0 0 10px rgba(0,0,0,.06);
+  pointer-events: none;
 }
 
 .btn{
@@ -107,6 +111,7 @@ h1{ margin:0 0 10px; }
 
 .counter{ margin: 0; opacity: .75; }
 
+/* Модалка */
 .modal{
   position:fixed;
   inset:0;
@@ -114,6 +119,11 @@ h1{ margin:0 0 10px; }
   display:grid;
   place-items:center;
   padding: 18px;
+}
+
+/* ✅ ВАЖНО: этот селектор сильнее и стоит после .modal */
+.modal.hidden{
+  display:none;
 }
 
 .modalCard{
@@ -134,4 +144,4 @@ h1{ margin:0 0 10px; }
   border-radius: 14px;
 }
 
-.modalActions{ display:flex; gap:10px; justify-content:center; flex-wrap: wrap; }
+.modalActions{ display:flex; justify-content:center; }
